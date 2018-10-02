@@ -1,0 +1,21 @@
+h3.text-center Run commands in this brower!
+= render 'form', command: @command
+
+- unless @commands.empty?
+  .col-md-10.offset-md-1.pt-4
+    table.table
+      thead
+        tr
+          th #
+          th command
+      tbody
+        - @commands.each_with_index do |command, index|
+          tr
+            th
+              = index + 1
+            td.text-monospace
+              = link_to command, target: "_blank"
+                i.fas.fa-external-link-alt
+                =< command.text
+
+    = paginate @commands
