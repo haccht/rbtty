@@ -1,13 +1,14 @@
-h3.text-center Run commands in this brower!
+h3.text-center Run any commands in your brower!
 = render 'form', command: @command
 
 - unless @commands.empty?
   .col-md-10.offset-md-1.pt-4
-    table.table
+    table.table.table-sm
       thead
         tr
-          th #
-          th command
+          th.col-xs-1  #
+          th.col-xs-10 command
+          th.col-xs-1
       tbody
         - @commands.each_with_index do |command, index|
           tr
@@ -17,5 +18,8 @@ h3.text-center Run commands in this brower!
               = link_to command, target: "_blank"
                 i.fas.fa-external-link-alt
                 =< command.text
+            td.text-right
+              = link_to command, method: :delete, data: {confirm: "Are you sure to delete?"}, class: 'text-danger'
+                i.fas.fa-trash-alt
 
     = paginate @commands
