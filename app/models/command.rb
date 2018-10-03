@@ -15,7 +15,7 @@ class Command < ApplicationRecord
   end
 
   def gotty_url
-    url = URI(ENV.fetch('GOTTY_ENDPOINT') { 'http://127.0.0.1:8080' })
+    url = URI(ENV.fetch('GOTTY_URL') { 'http://127.0.0.1:8080' })
     url.query = "arg=#{self.uuid}"
     url.to_s
   end

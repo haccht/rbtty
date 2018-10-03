@@ -27,7 +27,8 @@ namespace :gotty do
       command.accessed_at = Time.now
       command.save
 
-      sh command.text, verbose: false
+      username = ENV['GOTTY_USER'] || ENV['USER']
+      sh "sudo -u #{username} -i #{command.text}", verbose: false
     rescue
     end
   end
