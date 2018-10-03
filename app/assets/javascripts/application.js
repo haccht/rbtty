@@ -19,7 +19,7 @@
 //= require clipboard
 //= require_tree .
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   var clipboard = new Clipboard('.clipboard-btn');
 
   $('.clipboard-btn').tooltip({
