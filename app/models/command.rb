@@ -1,7 +1,8 @@
 require 'securerandom'
 
 class Command < ApplicationRecord
-  validates :uuid , uniqueness: true
+  validates :text, presence: true
+  validates :uuid, uniqueness: true
   paginates_per 25
 
   before_create do

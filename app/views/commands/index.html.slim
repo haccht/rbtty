@@ -1,4 +1,4 @@
-h3.text-center Run any commands in your brower!
+h3.text-center Run any commands in your browser!
 = render 'form', command: @command
 
 - unless @commands.empty?
@@ -7,19 +7,14 @@ h3.text-center Run any commands in your brower!
       thead
         tr
           th.col-xs-1  #
-          th.col-xs-10 command
-          th.col-xs-1
+          th.col-xs-11 command
       tbody
         - @commands.each_with_index do |command, index|
           tr
             th
               = index + 1
             td.text-monospace
-              = link_to command, target: "_blank"
-                i.fas.fa-external-link-alt
-                =< command.text
-            td.text-right
-              = link_to command, method: :delete, data: {confirm: "Are you sure to delete?"}, class: 'text-danger'
-                i.fas.fa-trash-alt
+              = link_to command
+                = command.text
 
     = paginate @commands

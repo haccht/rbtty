@@ -1,0 +1,20 @@
+h3.text-center Run any commands in your browser!
+
+.col-md-10.offset-md-1.pt-5
+  .card.text-white.bg-dark
+    .card-body
+      h5.card-title
+        .text-monospace
+          i.fas.fa-dollar-sign
+          =< @command.text
+      .card-text
+        .small
+          = link_to @command.gotty_url, class: 'text-light'
+            => @command.gotty_url
+          //.float-right
+            | Copy
+
+  br
+  .float-right
+    = link_to @command, method: :delete, data: {confirm: "Are you sure to delete?"}, class: 'btn btn-danger'
+      | Delete

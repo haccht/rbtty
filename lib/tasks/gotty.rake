@@ -14,6 +14,7 @@ namespace :gotty do
       exit 0
     end
 
+    sh "mkdir -p #{File.dirname(pidfile)}"
     sh "#{binfile} -w --permit-arguments --title-format rbtty-term #{ENV['GOTTY_EXTRA_ARGS']} bin/task_runner & echo $! > #{pidfile}"
     sleep 1 while File.exist?(pidfile)
   end
