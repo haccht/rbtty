@@ -16,4 +16,22 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require clipboard
 //= require_tree .
+
+$(document).ready(function(){
+  var clipboard = new Clipboard('.clipboard-btn');
+
+  $('.clipboard-btn').tooltip({
+    title: 'Copied!',
+    trigger: 'click',
+    placement: 'right'
+  });
+
+  clipboard.on('success', function(e) {
+    $(e.trigger).tooltip('show');
+    setTimeout(function() {
+      $(e.trigger).tooltip('hide');
+    }, 1000);
+  });
+});
