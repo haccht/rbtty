@@ -21,7 +21,7 @@ class CommandsController < ApplicationController
 
     respond_to do |format|
       if @command.save
-        format.html { redirect_to commands_url, notice: 'Command was successfully created.' }
+        format.html { redirect_to @command, notice: 'Command was successfully created.' }
         format.json { render json: { url: @command.gotty_url } }
       else
         format.html { redirect_to commands_url }
