@@ -1,22 +1,15 @@
 namespace :gotty do
   desc 'setup'
   task :setup => :environment do |task, args|
-    sh "wget -O - https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz | tar xvzf - -C #{File.join(Rails.root, 'bin')}"
+    sh "wget https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz"
+    sh "tar xvzf gotty_2.0.0-alpha.3_linux_amd64.tar.gz -C #{File.join(Rails.root, 'bin', 'gotty')}"
+    sh "rm -f gotty_2.0.0-alpha.3_linux_amd64.tar.gz"
   end
 
   desc 'start'
   task :start => :environment do |task, args|
     binfile = File.join(Rails.root, 'bin', 'gotty')
-    pidfile = File.join(Rails.root, 'tmp', 'pids', 'gotty.pid')
-
-    Signal.trap(:SIGTERM) do
-      sh "kill -9 $(cat #{pidfile}) && rm -f ${pidfile}"
-      exit 0
-    end
-
-    sh "mkdir -p #{File.dirname(pidfile)}"
-    sh "#{binfile} -w --permit-arguments --title-format rbtty-term #{ENV['GOTTY_EXTRA_ARGS']} bin/task_runner & echo $! > #{pidfile}"
-    sleep 1 while File.exist?(pidfile)
+    sh "#{binfile} -w --permit-arguments --title-format rbtty-term #{ENV['GOTTY_EXTRA_ARGS']} bin/task_runner"
   end
 
   desc 'invoke'
@@ -29,6 +22,8 @@ namespace :gotty do
 
       username = ENV['GOTTY_USER'] || ENV['USER']
       sh "sudo -u #{username} -i #{command.text}", verbose: false
+    rescue Interrupt
+      puts "Connection Closed"
     rescue
     end
   end
