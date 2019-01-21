@@ -1,0 +1,6 @@
+app: rbtty
+environment:
+  RAILS_RELATIVE_URL_ROOT: /rbtty
+  GOTTY_URL: http://casper.ssc-otemachi.ocn.ad.jp/rbtty/do
+  GOTTY_USER: gotty
+  GOTTY_EXTRA_ARGS: -p 9010
