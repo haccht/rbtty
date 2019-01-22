@@ -10,7 +10,7 @@ h3.text-center Run any commands in your browser!
       .card-text
         .float-right
           button.btn.btn-sm.btn-link.text-white.clipboard-btn data-clipboard-target='#link' Copy
-        = link_to @command.gotty_url, id: 'link', class: 'text-light'
+        = link_to @command.gotty_url, target: '_blank', id: 'link', class: 'text-light'
           => @command.gotty_url
 
   br

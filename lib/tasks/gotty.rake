@@ -21,7 +21,7 @@ namespace :gotty do
       command.save
 
       username = ENV['GOTTY_USER'] || ENV['USER']
-      sh "sudo -u #{username} -i #{command.text}", verbose: false
+      sh "sudo -u #{username} #{command.text}", verbose: false
     rescue Interrupt
       puts "Connection Closed"
     rescue

@@ -11,7 +11,6 @@ class CommandsController < ApplicationController
   # GET /commands/1
   # GET /commands/1.json
   def show
-    #redirect_to @command.gotty_url
   end
 
   # POST /commands

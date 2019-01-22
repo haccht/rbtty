@@ -1,7 +1,11 @@
+h3.text-center Start a container in your browser!
 .col-md-8.offset-md-2.pt-4
   = form_for command, html: {class:'form-horizontal'} do |form|
-    .form-group
-      = form.text_field :text, placeholder: "Enter a command you want...", label: false, class: "form-control"
+    .form-group.text-monospace
+      .input-group
+        .input-group-prepend
+          .input-group-text docker run --rm
+        = form.text_field :text, label: false, value: "-it busybox", class: "form-control"
     .form-group.text-right
       = form.button type: :submit, class: "btn btn-outline-dark"
         | Create

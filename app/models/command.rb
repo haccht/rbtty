@@ -7,6 +7,7 @@ class Command < ApplicationRecord
 
   before_create do
     self.uuid = SecureRandom.urlsafe_base64(16)
+    self.text = "docker run --rm #{text}"
     self.accessed_at = Time.now
   end
 
@@ -15,7 +16,7 @@ class Command < ApplicationRecord
   end
 
   def gotty_url
-    url = URI(ENV.fetch('GOTTY_URL') { 'http://127.0.0.1:8080' })
+    url = URI(ENV['GOTTY_URL'] || 'http://127.0.0.1:8080')
     url.query = "arg=#{self.uuid}"
     url.to_s
   end
