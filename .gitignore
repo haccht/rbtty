@@ -114,3 +114,4 @@ build-iPhoneSimulator/
 
 
 # End of https://www.gitignore.io/api/ruby,rails
+procsd.yml
